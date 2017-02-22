@@ -3,8 +3,6 @@ import { Server } from 'http';
 import * as request from 'request';
 import * as url from 'url';
 
-console.log(process.argv);
-
 export interface ServerConfig {
   port?: number;
   staticDir?: string;
@@ -14,7 +12,7 @@ export interface ServerConfig {
 
 export function createServer(config: ServerConfig = {
   port: 3000,
-  proxyPrefix: '',
+  proxyPrefix: '/',
   staticDir: './build'
 }): Server {
   const {port, proxyPrefix, proxyUrl, staticDir} = config;
@@ -24,7 +22,7 @@ export function createServer(config: ServerConfig = {
   app.use(express.static(staticDir));
 
   if (proxyUrl) {
-    app.all(`/${proxyPrefix}/*`, (req, res) => {
+    app.all(`${proxyPrefix}/*`, (req, res) => {
       const pipeUrl = proxyPrefix + url.parse(req.url, true).path;
       try {
         req.pipe(request(pipeUrl)).pipe(res);
@@ -38,7 +36,12 @@ export function createServer(config: ServerConfig = {
   const server = app.listen({
     port
   }, () => {
-    console.log(`server is ready on ${server.address().port}`);
+    console.log(`server is ready on port ${server.address().port}`);
+    console.log(`serving static assets from ${config.staticDir}`);
+    if (proxyUrl) {
+      console.log(`proxing all requests from ${config.proxyUrl} with prefix ${config.proxyPrefix}`);
+      console.log(`http://localhost:${server.address().port}${config.proxyPrefix}/<request_endpoint> => ${config.proxyUrl}/<request_endpoint>`);
+    }
   });
 
   return server;
