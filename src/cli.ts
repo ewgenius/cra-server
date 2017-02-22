@@ -3,6 +3,9 @@
 import { createServer, ServerConfig } from './server';
 import * as path from 'path';
 import * as program from 'commander';
+import { config } from 'dotenv';
+
+config();
 
 const packjson = require('../package.json');
 const cwd = process.cwd();
