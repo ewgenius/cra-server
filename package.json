@@ -1,0 +1,23 @@
+{
+  "name": "cra-server",
+  "version": "1.0.0",
+  "description": "simple http server with proxy for create-react-app projects",
+  "main": "lib/server.js",
+  "repository": "git@github.com:ewgenius/cra-server.git",
+  "author": "Evgeniy Khramkov <ewgeniux@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/express": "^4.0.35",
+    "@types/node": "^7.0.5",
+    "@types/request": "^0.0.40",
+    "tslint": "^4.4.2",
+    "typescript": "^2.1.6"
+  },
+  "dependencies": {
+    "express": "^4.14.1",
+    "request": "^2.79.0"
+  },
+  "scripts": {
+    "build": "tsc -p ./"
+  }
+}
