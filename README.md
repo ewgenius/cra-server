@@ -1,11 +1,11 @@
 # CRA Server
 
-simple express static server with opt-in proxy
+Simple express static server with opt-in proxy.
 
 ## How to
 
 ```
-npm install --dave-dev cra-server
+npm install --save-dev cra-server
 ```
 
 add in yout package.json:
