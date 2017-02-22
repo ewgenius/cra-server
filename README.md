@@ -34,7 +34,7 @@ or as cli tool
 cra-server -p 3000 -d ./build
 ```
 
--p, --port <port> - specify port, by default is 3000
--d, --dir <static-directory> - by default is ./build
--url, --proxy-url <proxy-url> - specify proxy url', optional
--prefix, --proxy-prefix <proxy-prefix> - specify proxy prefix, optional
+- -p, --port <port> - specify port, by default is 3000
+- -d, --dir <static-directory> - by default is ./build
+- -url, --proxy-url <proxy-url> - specify proxy url', optional
+- -prefix, --proxy-prefix <proxy-prefix> - specify proxy prefix, optional
