@@ -1,6 +1,6 @@
 {
   "name": "cra-server",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "simple http server with proxy for create-react-app projects",
   "main": "lib/server.js",
   "bin": "bin/cra-server",
