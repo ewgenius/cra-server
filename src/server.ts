@@ -10,9 +10,21 @@ export interface ServerConfig {
   proxyUrl?: string;
 }
 
+function cutPrefix(prefix: string, urlPath: string): string {
+  if (prefix.length > 0) {
+    if (urlPath.substr(0, prefix.length) === prefix) {
+      return urlPath.substr(prefix.length);
+    } else {
+      return urlPath;
+    }
+  } else {
+    return urlPath;
+  }
+}
+
 export function createServer(config: ServerConfig = {
   port: 3000,
-  proxyPrefix: '/',
+  proxyPrefix: '',
   staticDir: './build'
 }): Server {
   const {port, proxyPrefix, proxyUrl, staticDir} = config;
@@ -23,8 +35,10 @@ export function createServer(config: ServerConfig = {
 
   if (proxyUrl) {
     app.all(`${proxyPrefix}/*`, (req, res) => {
-      const pipeUrl = proxyPrefix + url.parse(req.url, true).path;
+      const urlPath = url.parse(req.url, true).path;
+      const pipeUrl = proxyUrl + cutPrefix(proxyPrefix, urlPath);
       try {
+        console.log(`${req.method}: ${req.url} => ${pipeUrl}`);
         req.pipe(request(pipeUrl)).pipe(res);
       } catch (e) {
         res.statusCode = 500;
