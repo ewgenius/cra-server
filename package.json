@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "simple http server with proxy for create-react-app projects",
   "main": "lib/server.js",
+  "bin": "lib/cli.js",
   "repository": "git@github.com:ewgenius/cra-server.git",
   "author": "Evgeniy Khramkov <ewgeniux@gmail.com>",
   "license": "MIT",
@@ -18,6 +19,6 @@
     "request": "^2.79.0"
   },
   "scripts": {
-    "build": "tsc -p ./"
+    "build": "rm -rf lib && tsc -p ./"
   }
 }
