@@ -1,0 +1,6 @@
+#!/usr/bin/env node
+'use strict';
+
+process.title = 'cra-template';
+
+require('../lib/cli.js');
